@@ -42,8 +42,18 @@
                         </a>
                     </li>
                     {{/if}}
+                    {{#if config.social.gplus}}
+                    <li>
+                        <a href="https://plus.google.com/+{{config.social.gplus}}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    {{/if}}
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; {{config.siteAuthor}}</p>
+                <p class="copyright text-muted">Copyright &copy; {{config.siteAuthor}}. Made with <span class=fa-heart-o></span> and <a href ="https://github.com/pawandubey/griffin">Griffin</a></p>
             </div>
         </div>
     </div>
