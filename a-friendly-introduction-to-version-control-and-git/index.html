@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>A Friendly Introduction to Version Control and Git | Not So Null</title>
+
+    <link rel="canonical" href="http://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://blog.pawandubey.com/assets/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="http://blog.pawandubey.com/assets/css/clean-blog.css">
+
+	<!--Google Plus-->
+	<link rel="author" >
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Raleway:800,400,300,600,700|Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <!--Syntax Highlighting-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/monokai.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://blog.pawandubey.com/">Not So Null</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://blog.pawandubey.com/">Home</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Post Header -->
+
+
+<header class="intro-header">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>A Friendly Introduction to Version Control and Git</h1>                    
+                    <span class="meta fa-calendar"> Jun 3 2014</span>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p>Once upon a time there lived two programmers who were great friends. They loved the same programming language, wanted to make similar kinds of things and shared similar interests. Their ideas were convergent. But their code was separated by physical distance.</p>
+<p>They tried emailing the whole code back and forth to each other. Initially, it seemed to work and they made progress. But the speed of progress was too much and the wheels came right off the emailing system as their code became large. They had to think of some solution. Something that would work with any size of codebase. Something, which didn’t depend on the size of codebase at all!</p>
+<p>Well, the above might be a fictional account, but it would have been a reality of every programmer, had there not been Version Control Systems.</p>
+<p>Had there not been what?!</p>
+<p>Version Control Systems. The very lifeline of collaborative coding. The name might sound confusing, but the concept is incredibly simple. And you can bet that you have done what it does some way or the other in your life before. Disagree? Let us see.</p>
+<p>Version Control Systems don’t do anything other than keep track of the each “version” of your code. Here, a version refers to a saved point in the evolution of your code. You are the one who decides at which point in the life of your code to make the saves for newer versions. Thus, your code is saved not as a single, monolithic file, which has only two “time-related” properties: the date it was created and the date it was last modified on. Instead, your code is saved as a stack of overlapping “versions” of your file. With each newer version stacking on the top of the pile, adding the changes made since the last version to the stack of versions, in turn completing your codebase. If you paid attention, you would have noticed that instead of having only two time-related properties, this new system has any many time-related properties as there are versions in the stack.</p>
+<p>In fact, a version represents a point of time in the life of the code itself!</p>
+<p>So, okay, you get how it works. But you don’t get how it helps our two geographically separated programmers, who were saddened by their inability to collaborate on a project they both wanted to do? Well, we were just coming to that feature of Version Control Systems. Repositories.</p>
+<p>A repository is a copy of the entire code – represented in the form of versions – stored on a memory. Hence, it can be your project folder right there in your computer. If you are version controlling it, you might as well start calling it your repository. What a repository does is simply hold all the updated code. But there we are presented with a problem: where does the repository sit?</p>
+<p>Should both of our disgruntled programmers have their own separate repositories? But that won’t be much different from coding individually now, would it? So should they host the repository on an online server instead, accessible by both of them? Excellent idea! A server it is, then!</p>
+<p>And indeed, a repository is only effective if it is stored remotely, on a server which is accessible through a network (the internet for example) for other collaborators to contribute code to. But then this brings us to another dilemma. Should all the collaborators on the code host their own local repositories (the complete stack of all the versions) on their computers as well? Or should they only keep the latest versions on their computer?</p>
+<p>Well, both of these approaches made sense to the some faction of programmers and two different types of Version Control Systems were developed: Distributed and Centralized. A Distributed VCS applies the former of the two possible approaches we discussed. Each contributor maintains a local instance of the complete repository, with all the information about each version of the code, and all the changes brought in by each version.</p>
+<p>In a Centralized VCS, the contributors only keep the latest version of the repository on their systems, for development aid. All the preceding version information is missing from their local instances. Instead, all the information is stored on the server, on the central repository. Since there is only one complete repository, any change made by the contributors must be added to this one central repository only. But not all code is good enough. Hence, somebody would need to proofread and validate it constantly. This become too big a hassle once a project gains momentum. Consider an active project like Mozilla Firefox with hundreds of contributors trying to add dozens of small changes every day. It is a proofreader’s nightmare.</p>
+<p>Although later developments in the CVCS would easen most of the pain related to adding changes efficaciously, systems like SVN(Subversion, a CVCS) would never gain full momentum because of its shortcomings, especially in dealing with larger projects.</p>
+<p>Thankfully, in the early 2000s, a certain Linus Torvalds would get into dispute with the company hosting the repositories of the Linux kernel, and would ruefully decide to make his own VCS. The world would never be the same again.</p>
+<p>Git was born, partly from the need to freely and more effectively manage the Linux kernel codebase, and partly from the genius of the badass known to us as Linus Torvalds. And it promptly changed the whole version control atmosphere. Version Control was suddenly easy. And more importantly, it was not a headache with even the largest of codebases. Just to top it off, Git, the promising newcomer was free and open source. It was the best thing invented since sliced bread. It took the developer world by storm.</p>
+<p>Git was a Distributed Version Control System (DVCS). Inferring from our earlier discussion, that means that projects using Git would need their contributors to have their own local versions of the repository stored on the server. Thus, each developer was free to test the changes he made and its effects on the code base (something called Integration Testing and Acceptance Testing) on his own local instance of the repository before trying to add it to the main remote repository. This would massively increase the ease of project management, pulling the developers to adopt Git like a magnet.</p>
+<p>Git had other additional features as well, which makes it not only more lightweight, but also a lot easier to deal with. One of those is called branching. Branching is an integral concept of Git, and is another of those features which helped make the choice of developers.</p>
+<p>Branching is simple. Consider the main repository to be the trunk of the tree. The base of the trunk, adjacent to the ground represents the initial state of the code. As more and more versions are generated and added to the code base, it slowly evolves, hence the trunk of the tree grows in height. Now at some point in the development of the code, a new feature needed to be added. But it was not advisable to stop the development on the main code just for the new “extra” feature. So the feature was handed over to some of the developers to work on, while the others kept working on the main code base.</p>
+<p>These new feature developers created a new “branch” off the main repository for the feature development. See this point as the point on the tree trunk where a new branch sprouts out and away from the main trunk. The branch shares the same wood before its origin from the trunk, but then develops into a separate part of the tree.</p>
+<p>Similarly, a branch in a repository is just a fork in the development path of the main code base. The forked branch has the same properties as the main code base had at the point of origin of the branch. But after that point, the main code base and the feature branch can proceed independently of each other, hence the feature development can take place without stopping the main development. Moreover, as the branch is a full repository in itself (you can see it as a virtual repository based on the repository it was branched off), hence all the testing can be done on the branch itself.</p>
+<p>But Git does not completely separates the branch from its origin. The branch and its originating code base are always linked passively. One can easily incorporate changes made in the original repository (or any other branch for that matter) into the feature branch after the creation of the branch. Or if one wants to, they can merge back the created branch into its origin (or to any other branch of choice). New branches can be created off branches. The possibilities are endless.</p>
+<p>Branches store the changes made to the repository in a very high level of abstraction. At the granular level, Git stores each modification made to the code in the form of “commits”. Each commit is a snapshot of the complete code base at the time of the commit (inclusive of the modifications being committed).</p>
+<p>This is again a big difference between DVCS and CVCS. A CVCS stores modifications in the form of modifications only. Hence each version of the repository on a CVCS is nothing but an account of what changed from the last version. So, mathematically speaking, if the original repository is represented as R and the modifications applied to it is represented as ∆R, then the repository versions would be something like this in a CVCS:</p>
+<p>R –> ∆R1 –> ∆R2 –> …………………………..–> ∆Rn</p>
+<p>Whereas, in a DVCS, like Git, each change, or commit takes a new snapshot of the whole repository at that point, so the representation would be something like:</p>
+<p>R –> R+∆R1 –> R+∆R1+∆R2 –> ………………………..–> R+(Σ∆Rn)</p>
+<p>Hence, even if the original version (or any of the versions for that matter) is destroyed by some reason, it will still result in no loss of data, whereas everything will go berserk in a CVCS. Git is made for data-security. You never subtract data from a Git repository. You only add data. Even the removal of some code will add a commit documenting the removal. Data is never removed.</p>
+<p>Thus, our two programmers finally found a quantum of solace. They could use Git to easily collaborate over the internet and evolve their ideas into something revolutionary. Will they go on to become millionaires in the future? We don’t know. But we do hope they come back to thank Git if they do. That is the least they could commit to.</p>
+
+				<hr>
+<span style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Share this post on </span>:<ul class="share-buttons">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/&t=Not So Null" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+  <li><a href="https://twitter.com/intent/tweet?source=http://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/&text=Not So Null: http://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/&via=thepawandubey" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+  <li><a href="https://plus.google.com/share?url=http://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+</ul>
+                <hr>
+<span class="tags" style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Posted under <a href="http://blog.pawandubey.com/tags/code" class="tag"> code</a></li></span>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="http://blog.pawandubey.com/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/thepawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/pawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/+PawanDubeyK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Pawan Dubey. Made with <span class=fa-heart-o></span> and <a href ="https://github.com/pawandubey/griffin">Griffin</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="http://blog.pawandubey.com/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="http://blog.pawandubey.com/assets/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="http://blog.pawandubey.com/assets/js/clean-blog.min.js"></script>
+
+<!--Highlight.js-->
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+
+</html>
