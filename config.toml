@@ -1,0 +1,33 @@
+#parsing details
+source = "content"
+output = "output"
+exclude = []
+
+#styling
+inputdate = "yyyy MM dd"
+outputdate = "MMM d yyyy"
+theme = "wells"
+headerimage = ""
+postsperindex = 10
+
+#render files as per tags?
+rendertags = true
+
+#preview
+port = 9090
+
+#social media details
+[social]
+	disqus = "your disqus shortcode"
+	fb = "your facebook profile id"
+	twitter = "https://twitter.com/thepawandubey"
+	github = "https://github.com/pawandubey"
+	gplus = "https://plus.google.com/u/0/+PawanDubeyK/"
+	so = "your stackoverflow profile id"
+
+#site details
+[site]
+	name = "Not So Null"
+	tagline = "Code += Play"
+	author = "Pawan Dubey"
+	baseurl = "http://localhost:9090"

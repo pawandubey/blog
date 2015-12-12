@@ -1,0 +1,67 @@
+{{>head this}}
+
+<body>
+
+{{>nav this}}
+
+<!-- Page Header -->
+{{#if config.headerImage}}
+<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{config.headerImage}}') center center no-repeat">
+{{else}}
+<header class="intro-header">
+{{/if}}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>{{config.siteName}}</h1>
+                    <hr class="small">
+                    <span class="subheading">Posts under {{tag}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+{{#posts}}
+<div class="post-preview">
+    <a href="{{permalink}}">
+        <h2 class="post-title">            {{title}}
+        </h2>
+        
+        <h3 class="post-subtitle">
+            {{{excerpt}}}
+        </h3>
+        
+    </a>
+    <p class="post-meta">Posted on {{prettyDate}}</p>
+</div>
+<hr>
+{{/posts}}
+
+<!-- Pager -->
+
+<ul class="pager">
+    {{#if index.previousPage}}
+    <li class="previous">
+        <a href="{{index.previousPage}}">&larr; Newer Posts</a>
+    </li>
+    {{/if}}
+    {{#if index.nextPage}}
+    <li class="next">
+        <a href="{{index.nextPage}}">Older Posts &rarr;</a>
+    </li>
+    {{/if}}
+</ul>
+</div>
+</div>
+</div>
+{{>footer this}}
+</body>
+</html>

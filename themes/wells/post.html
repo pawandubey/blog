@@ -1,0 +1,51 @@
+{{>head this}}
+
+<body>
+
+{{>nav this}}
+
+<!-- Post Header -->
+{{#if post.featuredImage}}
+<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{post.featuredImage}}') center center no-repeat">
+{{else}}
+{{#if config.headerImage}}
+<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{config.headerImage}}') center center no-repeat">
+{{else}}
+<header class="intro-header">
+{{/if}}
+{{/if}}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>{{post.title}}</h1>                    
+                    <span class="meta">Published {{post.prettyDate}}</span>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				{{{post.content}}}
+
+                <hr>
+<span class="tags" style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">{{#if post.tags}}Posted under{{#post.tags}} <a href="{{config.siteBaseUrl}}/tags/{{this}}" class="tag"> {{this}}</a></li>{{/post.tags}}{{/if}}</span>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+{{>footer this}}
+
+</body>
+
+</html>
