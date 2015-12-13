@@ -11,7 +11,7 @@ headerimage = ""
 postsperindex = 10
 
 #render files as per tags?
-rendertags = true
+rendertags = false
 
 #preview
 port = 9090

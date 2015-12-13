@@ -33,7 +33,7 @@ main() {
 	done
 
 	# Set default options
-	deploy_directory=${GIT_DEPLOY_DIR:-outpu}
+	deploy_directory=${GIT_DEPLOY_DIR:-output}
 	deploy_branch=${GIT_DEPLOY_BRANCH:-gh-pages}
 
 	#if no user identity is already set in the current git environment, use this:

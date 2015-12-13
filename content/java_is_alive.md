@@ -27,7 +27,7 @@ In a way, Oracle profited a lot from the timing of its purchase of Sun. And its 
 
 As of now, the statistics are mindblowingly in favour of Java, especially compared to other languages which it competes with. For example, here is a snapshot of what the [Google Trends look like for some of the most popular languages for the past year](http://www.google.co.in/trends/explore#q=/m/07sbkfb,+python,+c%2B%2B,+c%23,+/m/02p97&cmpt=q&date=1/2014+12m&cat=0-5). The blue line marks Java. The red line is Python, which is supposed to be the most beginner friendly language out there. Java beats it by a score of 78 – 7.
 
-trends
+<img src="/images/trends.png" alt="Google trends">
 
 
 ##Are Developers Interested In Java?
@@ -35,7 +35,7 @@ trends
 There does not seem to be any competition as far as the public interest in the language is concerned. But does this data reflect the developer interest in the language? Not really. For that, we turn to the Tiobe Index. This is a reflection of a number of factors representing the overall interest in the developer community in the field of languages. Java has consistently finished in the top 3 for the past 15 years. That is no mean feat. The overall trends show how interest in Java has plateaued at a respectable level since Oracle took over Sun and Android became mainstream. Below is an overall chart. [The full statistics can be found here](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html).
  
 
-tiobe
+<img src="/images/tiobe.png" alt="tiobe index">
 
 
 ##How Active Is The Java Community?
@@ -44,11 +44,11 @@ Okay, so we have sufficiently established that newbies and seasoned developers a
 
 Here is a look at its tags sorted by popularity. The numbers alongside each tag represent how many questions have been asked related to the tag by the community on the site. Java has twice as many questions asked on StackOverflow as Python, perhaps its closest competitor in the open source programming language landscape.
 
-java
+<img src="/images/java.png" alt="Java on Stackoverflow">
 
 But what about the past year? Well, we have data for that too, thanks to a simple SQL query which let me list the most popular tags for the year 2014. [You can find the query here](http://data.stackexchange.com/stackoverflow/query/edit/293857).
 
-stats
+<img src="/images/stats.png" alt="Java on StackOverflow for 2014">
 
 As you can see, Java had twice as many questions asked than Python in 2014, finishing on the second spot overall, just behind JavaScript, while Python [2] sits at the comfortable 8th spot. This confirms the active community that surrounds the Java platform, including Java EE and Android.
 
@@ -57,7 +57,7 @@ As you can see, Java had twice as many questions asked than Python in 2014, fini
 
 Lastly, a visit to Github was inevitable, as it is the largest code host in the world with more than three million repositories stored on its servers. The excellent Githut provides a nice visualization about the popularity of various programming languages on Github. Below is a screenshot of the top 10 programming languages being used in the repositories hosted by Github. Java, again, is behind only JavaScript [3], and ahead of Python and fancier languages, like Ruby and Scala.
 
-github
+<img src="/images/github.png" alt="Java on Github">
 
 But what does it tell us? One small, but important thing. Java is alive. Code is being written in Java incessantly. And that is what keeps a language alive. Developers actually using it, not just talking or searching about it. It’s more about the end product than the buzz that surrounds something. Java is not fancy, its not very hackable  but it is very beginner friendly, no-nonsense and powerful. The features which will keep Java going on. Slowly, but steadily.
 
