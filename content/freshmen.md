@@ -6,8 +6,10 @@ date= "2016 08 06"
 tags= ["code", "cs", "college"]
 #####
 
+> If you don't really care about my rationale for writing this whole thing, you can jump straight to the [list by clicking here.](#list)
+
 ## Why should I care?
-As I have grown older, I have realized that no amount of experience is a substitute for good advice from others. This is because of two reasons. The first reason is that no matter how much experience you accumulate, there will always be somebody with more experience than you. You can't overtake time and people who have started earlier simply won that race by being early. This is not a bad thing. By being early, they have made mistakes that you don't have to make if you take their advice. This is a particularly advantageous situation as you get to learn from mistakes without ever making them yourself.
+As I have grown older, I have realized that no amount of experience is a substitute for good advice from others.##more## This is because of two reasons. The first reason is that no matter how much experience you accumulate, there will always be somebody with more experience than you. You can't overtake time and people who have started earlier simply won that race by being early. This is not a bad thing. By being early, they have made mistakes that you don't have to make if you take their advice. This is a particularly advantageous situation as you get to learn from mistakes without ever making them yourself.
 
 The second reason is that people are generally good and they want you to grow. This is obviously a deeply personal opinion of mine rather than a scientific fact, but it has helped me navigate life with some amount of success, so I will continue to preach it with impunity. This second reason is also more important than the first, since if people did not _want_ to share their experience with you in the first place, the aforementioned first reason is rendered moot.
 
@@ -27,7 +29,7 @@ So this idea had been sitting in my drafts folder for the longer part of the las
 
 After much deliberation, I decided to make this loosely in the form of a list, despite my reservations against Buzzfeed-ification. To maintain the balance of the universe, I will forego numbering the list, which also allows me to emphasize that order does not matter. Some of the headings will be of the _"Do this"_ form, calling you into action, while others will have more general and abstract titles. This is a conscious decision as not all advices are a call to action, some are a gist of learnings drawn from experiences. Moreover, this hopefully forces people to read through the whole thing and not just skim throught the titles. Contrary to what Twitter would have you believe, not everything can be condensed into 140 characters. Read the whole thing. You can make that the zeroeth advice. The others follow.
 
-
+<a name="list"></a>
 ## Start Early
 Woody Allen said that 80% of success is showing up. I'd add that 90% of success is about showing up on time. In the world of computer science and Moore's Law, on time means early.
 
@@ -164,7 +166,7 @@ Which brings me to the next point: learn to write proper English. As a developer
 
 
 ## Recommended Reading
-I am hardly the authority when it comes to career advice and it is much easier for me to point you to the more accomplished personalities who have much better things to say about being a successful CS student. So I will link you to Joel Spolsky, Matt Might and Paul Graham and be done with it. 
+I am hardly the authority when it comes to career advice and it is much easier for me to point you to the more accomplished personalities who have much better things to say about being a successful CS student. So I will link you to [Joel Spolsky](http://www.joelonsoftware.com/articles/CollegeAdvice.html), [Matt Might](http://matt.might.net/articles/college-tips/) and [Paul Graham](http://www.paulgraham.com/college.html) and be done with it. 
 
 
 ## Conclusion

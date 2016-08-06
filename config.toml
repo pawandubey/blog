@@ -1,7 +1,7 @@
 #parsing details
 source = "content"
 output = "output"
-exclude = []
+exclude = ["drafts"]
 
 #styling
 inputdate = "yyyy MM dd"
