@@ -459,11 +459,9 @@ pre,
 code,
 pre > code {
   border: none;
-  padding: 0px;
   white-space: pre;
   overflow: auto;
   border-radius: 5px;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3) inset, 0px 1px 0px rgba(255, 255, 255, 0.1), 0px -1px 0px rgba(0, 0, 0, 0.5);
   font-family: 'Inconsolata', 'Consolas', 'Menlo', "Courier New", monospace;
   font-size: medium;
 }
