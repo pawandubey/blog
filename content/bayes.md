@@ -90,7 +90,7 @@ end
 
 I am using the [ruby_stemmer](https://github.com/aurelian/ruby-stemmer) gem which allows me to use the [Snowball Stemmer](http://snowball.tartarus.org) to clean up the text. We will also remove the commonly occuring words in English, like _I_, _we_, _an_, _the_, called **stop_words** from the text, for which I will use a custom file called _stop_words.list_.
 
-The `tokenize` method above takes a block of text, splits it into words, ignores the stop words and stems and returns all other words one by one for the block to process. I like using blocks in Ruby as much as possible as they simplify the code, as we will see.
+The `tokenize` method above takes a block of text, splits it into words, ignores the stop words, and stems and returns all other words one by one for the block to process. I like using blocks in Ruby as much as possible as they simplify the code, as we will see.
 
 Our classifier API will consist of two methods, `train` and `classify`, both of which do what it says on the tin. The `train` method is quite simple. We will provide the classifier with a category and some corresponding text. The system will store the category in the set if it not already exists, and then it will `tokenize` the text using our method from above and add it to the model - which is nothing but a `hash`. The model will store the number of times each word has been seen for every category. This will allow us to perform some easy calculations required for the classification.
 
@@ -104,11 +104,11 @@ def train(category, data)
 end
 ````
 
-The `classify` method is a bit more complex than `train`. In our classifier, the categories are the labels (apples, oranges) and the words are the features (weight, colour). The probability of each category \\(P(C_i)\\) will be simply the ratio of the number of times \\(i^th\\) category is seen to the total number of times we see any category. So if all categories are seen equal number of times, then \\(P(C_i)\\) will simply be the inverse of the number of unique categories.
+The `classify` method is a bit more complex than `train`. In our classifier, the categories are the labels (apples, oranges) and the words are the features (weight, colour). The probability of each category \\(P(C_i)\\) will be simply the ratio of the number of times \\(i^{th}\\) category is seen to the total number of times we see any category. So if all categories are seen equal number of times, then \\(P(C_i)\\) will simply be the inverse of the number of unique categories.
 
-The probability of a word belonging to a category (\\(P(x_j)\\)) can be determined by the ratio of the number of times that word appears in context of that category to the total number of appearances of the word.
+The probability of a word belonging to a category (\\(P(x_j|C_i)\\)) can be determined by the ratio of the number of times that word appears in context of that category to the total number of appearances of the word.
 
-But what about the words which we have never seen before? Their probabilities will always be 0 and hence the final probability will also come out to be 0 all the time, as it is just a product. To tackle this issue, we use something called _Laplace Smoothing_, which is the addition of 1 to all probabilities. This avoids the 0 error and does not affect the final decision as all values are increased by the same amount.
+But what about the words which we have never seen before? Their probabilities will always be 0 and hence the final probability will also come out to be 0 all the time, as it is just a product. To tackle this issue, we use something called [_Laplace Smoothing_](https://en.wikipedia.org/wiki/Additive_smoothing), which is the addition of 1 to all probabilities. This avoids the 0 error and does not affect the final decision as all values are increased by the same amount.
 
 However, there is one final problem we need to tackle. Since probabilities only range between 0 and 1, the product of many such probabilities can end up being a very small number. For a set with large number of features (words), this will result in a floating point underflow. To solve this problem, instead of taking pure product, we will take the **log** of the equation. This allows us to change the product into a summation and removes the underflow problem.
 
@@ -177,7 +177,7 @@ To test the accuracy, we do almost the same thing, but also keep a counter for t
 Using the WebKB dataset, the current implementation achieved an accuracy of roughly 74%. Not bad for a day's work. The accuracy also depends a lot on the dataset and can vary wildly. However, it is clear we can do better.
 
 ## Next Steps
-We can tune our algorithm a bit to improve the classification by tuning some of the parameters. Right of the bat, we can use the actual frequency ratio of the different categories instead of the inverse of their size. Another improvement we can do is to tune our smoothing technique.
+We can tune our algorithm a bit to improve the classification by tuning some of the parameters. Right off the bat, we can use the actual frequency ratio of the different categories instead of the inverse of their size. Another improvement we can do is to tune our smoothing technique.
 
 We can also manipulate our dataset by finding synonyms and grouping them together. This is one extra step apart from just stemming. We can also disregard the words (features) whose frequencies don't vary across categories as they are not helpful in the decision making.
 
