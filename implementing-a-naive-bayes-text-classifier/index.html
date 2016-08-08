@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>Implementing a Naive Bayes Text Classifier | Not So Null</title>
+
+    <link rel="canonical" href="http://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://blog.pawandubey.com/assets/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="http://blog.pawandubey.com/assets/css/clean-blog.css">
+
+	  <!--Google Plus-->
+	  <link rel="author" >
+
+    <!-- Custom Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:800,400,300,600,700|Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    
+    <!--Syntax Highlighting-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/railscasts.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+
+    <!--FontAwesome-->
+    <script src="https://use.fontawesome.com/928161fc5d.js"></script>
+
+    <!--MathJax-->
+    <script type="text/javascript" async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://blog.pawandubey.com/">Not So Null</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="http://blog.pawandubey.com/">Home</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Post Header -->
+
+
+<header class="intro-header">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>Implementing a Naive Bayes Text Classifier</h1>                    
+                    <span class="meta"><i class="fa fa-calendar"></i> Aug 8 2016</span>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<p>Ever since I discovered spam filters, I have been extremely interested in natural language and making sense out of it. One thing that I have come to understand about language is that it is <em>hard</em> to make sense of. It is actually a great wonder that we manage to understand anything at all. We have polluted our languages with so much ambiguity and assumed knowledge that making sense out of it from scratch is a nightmare. We have been ploughing away at this problem for <em>decades</em> now, <em>decades</em>, and still, semantically understanding language remains a herculean task.</p>
+<h2>Classification Problems</h2>
+<p>Thankfully we don't need to semantically understand everything to derive some use out of it. Many common problems can be solved with the help of some elementary mathematical principles applied to the problem at hand. Spam filtering is one such problem. <em>Text classification</em> is another. A classification problem is a task of applying appropriate labels to different items of a set - like putting apples and oranges into different boxes given that we are provided with some data about them upfront.</p>
+<p>In the apples and oranges problem, the data provided might tell us that <em>the redder the fruit, the greater the chance of it being an apple rather than an orange</em>, for instance. We can use this information to our advantage and provided that we already have some apples and oranges to analyze, we can determine a threshold of <em>redness</em> that is likely to form the boundary between the colours of apples and oranges. Every fruit above this threshold can be classfied as an apple and vice versa for oranges.</p>
+<p>Now you might think, what about those fruits whose redness falls bang on the threshold? The honest answer is that such <em>on the fence</em> cases are likely to be classified wrongly; especially at first when we only have a limited amount of data to determine the threshold. We can, however, reduce this margin of error by constantly analyzing the results of our classfication and refining our measure of the threshold. This part is generally called <em>learning</em>. This is unlikely to fully eliminate errors, but it can produce a system which can give us a practically acceptable level of classification accuracy. Such a system which can label things (here, fruits) based on some of their features (here, colour) is called a <em>classifier</em>.</p>
+<p>Classification problems are some of the most interesting ones in computer science and have captured the imagination of computer scientists for decades. Partly because classification problems form a subset of decision problems, which is an important feature of artificial intelligence, and partly because we have many practical uses for it. Spam filtering is one of the more common, and simpler problems of such kind. The more difficult problems are identifying whether an image contains NSFW material, or specifying a species and genus for a new found organism based on its genetic structure, for instance.</p>
+<p>As discussed above, though, such classifications are likely to be inaccurate; for <a href="http://c2.com/cgi/wiki?ClassificationProblem">any description of a chair you can provide, somebody can come up with an object which fits the description but is not a chair.</a></p>
+<h2>Naive Bayes Classifier</h2>
+<p>This has not deterred us from trying to classify stuff anyway, and not without some success. Of the multiple classifiers developed till now, one of the most fundamental and yet powerful one is the <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier"><em>Naive Bayes Classifier</em></a>. If you remember anything from your statistics classes, the <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes' theorem</a> describes the probability of an event based on certain conditions that might influence its occurence, more generally known as the <em>conditional probability</em>.</p>
+<p>Taking our apples and oranges example, assuming that we know that 45% of all fruits are apples and that 95% of apples are red, using conditional probability, we can determine the probability of a fruit being an apple, given that it is red. Which, incidentally, is the problem we have been trying to solve. Expressed mathematically, the <em>Bayes' Theorem</em> goes something like this:</p>
+<p>Let \(P(A)\) and \(P(B)\) be the probabilities of two events \(A\) and \(B\). Then \(P(A | B)\) defines the <em>conditional probability</em> of the occurence of event \(A\) <strong>given that</strong> event \(B\) has already occured. And this conditional probability is given by</p>
+<p>$$ P(A | B) = \frac{P(A \cap B)}{P(B)}\; ,\; if \; P(B) \ne 0 $$</p>
+<p>This, upon simplification gives us the Bayes' Theorem:</p>
+<p>$$ P(A | B) = \frac{P(B | A) P(A)}{P(B)}\; , \; if \; P(B) \ne 0 $$</p>
+<p>Using our apples and oranges example again, suppose \(P(A)\) represents the probability of getting an apple, and \(P(B)\) represents the probability of getting a red fruit. Then \(P(A|B)\) is the probability of a fruit being an apple given that it is red. Which is proportional to the product of the probability of an apple being a red fruit (\(P(B|A)\)) and the probability of getting an apple overall (\(P(A)\)).</p>
+<p>But what if there are multiple conditions? What if we also factor in the <em>weight</em> of the fruits as a factor. That means we will have to introduce another event \(C\) which denotes getting a fruit of a weight over the threshold (say, 50gms). We can substitute \(C\) in the place of \(B\) in our previous paragraph to get the probability of getting an apple given that the fruit weighs over a threshold (\(P(A|C)\)).</p>
+<p>Your eyes glazeth over, probably. Just bear with me for a second, we are reaching the fun part. Let \(F = (B,C)\) denote the set of features we can use to classify our fruits. How can we relate the probability of getting an apple (\(P(A)\)) to this set \(F\)? Here is where the <strong>naive</strong> part of the classifier comes into the picture. It lets us treat all the features of the set \(F\) <em>independently</em> from each other, which allows us to reduce the equation using the chain rule to:</p>
+<p>$$ P(A|F) \propto P(A)\times P(B|A)\times P(C|A) $$</p>
+<p>We can discard the denominator as it is not related to \(P(A)\) at all; moreover, the denominator remains constant for all values of the numerator as the probabilities of individual features together remains the same. Generalizing for \(n\) features, we get:
+$$ P(A|x_1,x_2,&hellip;,x_n) \propto P(A) \prod_{i=1}^{n} P(x_i|A) $$</p>
+<p>But this only tells us the probability of it being an apple given all its features. To actually make the classification, we perform the same operation over all possible labels and simply take the maximum value that we get.</p>
+<p>$$ \mathrm{label}\; =\; \underset{j \in \{1,..,J\}}{\mathrm{argmax}}\; P(L_j) \prod_{i=1}^{n} P(x_i|L_j) $$</p>
+<p>And we are done with the maths. Phew.</p>
+<h2>Implementation</h2>
+<blockquote><p>The code for the whole thing can be found <a href="https://github.com/pawandubey/ruby_experiments/tree/master/bayes">on github</a>.</p>
+</blockquote>
+<p>Now on to the fun part, making the actual thing. To keep it simple, we will create a text classifier based on the Naive Bayes' approach. This will allow us to label some piece of text from a fixed set of labels that we will train the classifier on. Training the classifier consists of showing the system some text and telling it what label is appropriate for it. After it has seen enough amount of training data, the system should be able to tell us what label befits a piece of text with reasonable accuracy.</p>
+<p>We need two main things for our text classification system - the model which will store the training data, and the set of labels which the system will be aware of. Both of these things will be fed to the system as part of the training data itself.</p>
+<pre><code class= "ruby">class Naive &lt; Bayes::Base
+  attr_accessor :model, :categories
+
+  def initialize
+    @model = Hash.new { |h,k| h[k] = Hash.new(0) }
+    @categories = Set.new
+    super
+  end
+end
+</code></pre>
+<p>To actually train the model, we will need to first clean the data that we will feed into the system. Cleaning the data involves splitting the text into individual words and then stemming those words. Stemming is the process of reducing words to their lexical <em>stems</em> so that both <em>imagination</em> and <em>imagine</em> will get reduced to the stem <em>imagin</em>. This allows us to normalize common forms of the same stem as they are used in the same context, more often than not. We will put this code in the <code>Base</code> class of the module.</p>
+<pre><code class= "ruby">class Base
+  attr_accessor :stemmer, :stop_words
+
+  def initialize
+    @stemmer = Lingua::Stemmer.new
+    @stop_words = File.read("stop_words.list").split(/\W+/)
+  end
+
+  def tokenize(text)
+    if block_given?
+      text.split(/\W+/).each do |word|
+        yield(@stemmer.stem(word)) unless @stop_words.include? word
+      end
+    end
+  end
+end
+</code></pre>
+<p>I am using the <a href="https://github.com/aurelian/ruby-stemmer">ruby_stemmer</a> gem which allows me to use the <a href="http://snowball.tartarus.org">Snowball Stemmer</a> to clean up the text. We will also remove the commonly occuring words in English, like <em>I</em>, <em>we</em>, <em>an</em>, <em>the</em>, called <strong>stop_words</strong> from the text, for which I will use a custom file called <em>stop_words.list</em>.</p>
+<p>The <code>tokenize</code> method above takes a block of text, splits it into words, ignores the stop words and stems and returns all other words one by one for the block to process. I like using blocks in Ruby as much as possible as they simplify the code, as we will see.</p>
+<p>Our classifier API will consist of two methods, <code>train</code> and <code>classify</code>, both of which do what it says on the tin. The <code>train</code> method is quite simple. We will provide the classifier with a category and some corresponding text. The system will store the category in the set if it not already exists, and then it will <code>tokenize</code> the text using our method from above and add it to the model - which is nothing but a <code>hash</code>. The model will store the number of times each word has been seen for every category. This will allow us to perform some easy calculations required for the classification.</p>
+<pre><code class= "ruby">def train(category, data)
+  @categories &lt;&lt; category.to_sym
+
+  tokenize(data) do |word|
+    @model[word][category.to_sym] += 1
+  end
+end
+</code></pre>
+<p>The <code>classify</code> method is a bit more complex than <code>train</code>. In our classifier, the categories are the labels (apples, oranges) and the words are the features (weight, colour). The probability of each category \(P(C_i)\) will be simply the ratio of the number of times \(i^th\) category is seen to the total number of times we see any category. So if all categories are seen equal number of times, then \(P(C_i)\) will simply be the inverse of the number of unique categories.</p>
+<p>The probability of a word belonging to a category (\(P(x_j)\)) can be determined by the ratio of the number of times that word appears in context of that category to the total number of appearances of the word.</p>
+<p>But what about the words which we have never seen before? Their probabilities will always be 0 and hence the final probability will also come out to be 0 all the time, as it is just a product. To tackle this issue, we use something called <em>Laplace Smoothing</em>, which is the addition of 1 to all probabilities. This avoids the 0 error and does not affect the final decision as all values are increased by the same amount.</p>
+<p>However, there is one final problem we need to tackle. Since probabilities only range between 0 and 1, the product of many such probabilities can end up being a very small number. For a set with large number of features (words), this will result in a floating point underflow. To solve this problem, instead of taking pure product, we will take the <strong>log</strong> of the equation. This allows us to change the product into a summation and removes the underflow problem.</p>
+<p>$$ \mathrm{label}\; =\; \underset{j \in \{1,..,J\}}{\mathrm{argmax}}\; \log P(L_j) + \sum_{i=1}^{n} \log P(x_i|L_j) $$</p>
+<p>We return all the calculated probabilities for all categories so that we can see the results. Labelling will just require returning the category with the highest probability.</p>
+<pre><code class= "ruby">def classify(text)
+  cat_weight = Math.log(1.0 / @categories.size)
+  ratings = {}
+
+  @categories.each do |category|
+    features_weight = 0.0
+    tokenize(text) do |word|
+      features_weight += Math.log get_word_weight(word, category)
+    end
+    ratings[category] = cat_weight + features_weight
+  end
+
+  ratings
+end
+</code></pre>
+<p>The <code>get_word_weight</code> method returns the frequency of the <code>word</code> if <code>category</code> is <code>nil</code> else it returns the ratio of the frequency of the <code>word</code> in the given <code>category</code> to the total frequency. This is also where we handle <em>Laplace Smoothing</em>.</p>
+<pre><code class= "ruby">def get_word_count(word, category=nil)
+  if category.nil?
+    @model.fetch(word).reduce(0) do |sum, (_, v)|
+      sum += v
+    end
+  elsif @categories.include? category.to_sym
+    @model.fetch(word)[category.to_sym] || 0
+  end
+rescue
+  0 # return 0 if the word has not been seen
+end
+
+def get_word_weight(word, category)
+  total_word_count = get_word_count(word)
+  (get_word_count(word, category).to_f + 1) / (total_word_count + @model.keys.size)
+end
+</code></pre>
+<p>And we are done. Well, almost. We also need to test the efficiency of the system.</p>
+<h2>Testing the Implementation</h2>
+<p>For the test, we will use the <a href="http://ana.cachopo.org/datasets-for-single-label-text-categorization">WebKB dataset from CMU</a> which has been cleaned for training purposes and also divided into training and test sets.</p>
+<p>To test the implementation, we will simply feed the training data into the model and then use the test set to get the results. As the dataset is one record per line with the first word being the label, we can simply iterate through the file and feed it to our model.</p>
+<pre><code class= "ruby">classifier = Bayes::Naive.new
+
+File.foreach('path-to-training-dataset') do |line|
+    data = line.split(/\W+/)
+    category = data.first.to_sym
+    text = data.drop(1).join " " # discard the label
+
+    classifier.train category, text
+end
+</code></pre>
+<p>To test the accuracy, we do almost the same thing, but also keep a counter for the number of correct predictions. At the end we take the ratio to the total number of predictions.</p>
+<p>Using the WebKB dataset, the current implementation achieved an accuracy of roughly 74%. Not bad for a day's work. The accuracy also depends a lot on the dataset and can vary wildly. However, it is clear we can do better.</p>
+<h2>Next Steps</h2>
+<p>We can tune our algorithm a bit to improve the classification by tuning some of the parameters. Right of the bat, we can use the actual frequency ratio of the different categories instead of the inverse of their size. Another improvement we can do is to tune our smoothing technique.</p>
+<p>We can also manipulate our dataset by finding synonyms and grouping them together. This is one extra step apart from just stemming. We can also disregard the words (features) whose frequencies don't vary across categories as they are not helpful in the decision making.</p>
+<p>We can also chuck the Naive Bayes classifier completely and use something more complex, like a Bayesian Network Classifier or Support Vector Machines, but at times the ease and speed of a Naive Bayes classifier is desireable over slight increase in accuracy.</p>
+<h2>Conclusion</h2>
+<p>Again, code for the classifier is available on <a href="https://github.com/pawandubey/ruby_experiments/tree/master/bayes">github</a>.</p>
+<p>We looked at how a Naive Bayes Classifier works and implemented a simple one without using much code. We also tested its accuracy on a single dataset and got acceptable results, proving that text classification is not as hard as some other problems related to natural languages. In a future post, I will discuss an alternative method for text classification and compare it with Naive Bayes. You can send me feedback on the post using the social buttons below or simply shoot me an <a href="mailto:pawandubey@outlook.com">email</a>.</p>
+
+				<hr>
+<span style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Share this post on </span>:<ul class="share-buttons">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/&t=Implementing a Naive Bayes Text Classifier" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+  <li><a href="https://twitter.com/intent/tweet?source=http://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/&text=Implementing a Naive Bayes Text Classifier: http://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/&via=thepawandubey" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+  <li><a href="https://plus.google.com/share?url=http://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-lg"></i></a></li>
+</ul>
+                <hr>
+<span class="tags" style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Posted under <a href="http://blog.pawandubey.com/tags/code" class="tag"> code</a></li> <a href="http://blog.pawandubey.com/tags/ruby" class="tag"> ruby</a></li> <a href="http://blog.pawandubey.com/tags/classifier" class="tag"> classifier</a></li></span>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="http://blog.pawandubey.com/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/thepawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/pawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li>
+                        <a href="https://plus.google.com/+PawanDubeyK">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; <a href="http://pawandubey.com">Pawan Dubey</a>. Made with <span class="fa fa-heart-o"></span> and <a href ="https://github.com/pawandubey/griffin">Griffin</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="http://blog.pawandubey.com/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="http://blog.pawandubey.com/assets/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="http://blog.pawandubey.com/assets/js/clean-blog.min.js"></script>
+
+<!--Highlight.js-->
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+
+</html>
