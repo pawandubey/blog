@@ -30,4 +30,4 @@ port = 9090
 	name = "Not So Null"
 	tagline = "Code += Play"
 	author = "Pawan Dubey"
-	baseurl = "http://blog.pawandubey.com"
+	baseurl = "https://blog.pawandubey.com"
