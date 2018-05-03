@@ -164,11 +164,11 @@ To test the implementation, we will simply feed the training data into the model
 classifier = Bayes::Naive.new
 
 File.foreach('path-to-training-dataset') do |line|
-    data = line.split(/\W+/)
-    category = data.first.to_sym
-    text = data.drop(1).join " " # discard the label
+  data = line.split(/\W+/)
+  category = data.first.to_sym
+  text = data.drop(1).join " " # discard the label
     
-    classifier.train category, text
+  classifier.train category, text
 end
 ````
 
