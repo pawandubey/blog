@@ -228,11 +228,11 @@ end
 <pre><code class= "ruby">classifier = Bayes::Naive.new
 
 File.foreach('path-to-training-dataset') do |line|
-    data = line.split(/\W+/)
-    category = data.first.to_sym
-    text = data.drop(1).join " " # discard the label
+  data = line.split(/\W+/)
+  category = data.first.to_sym
+  text = data.drop(1).join " " # discard the label
 
-    classifier.train category, text
+  classifier.train category, text
 end
 </code></pre>
 <p>To test the accuracy, we do almost the same thing, but also keep a counter for the number of correct predictions. At the end we take the ratio to the total number of predictions.</p>
