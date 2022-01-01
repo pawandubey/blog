@@ -18,12 +18,8 @@ port = 9090
 
 #social media details
 [social]
-	disqus = "your disqus shortcode"
-	fb = 
 	twitter = "thepawandubey"
 	github = "pawandubey"
-	gplus = "PawanDubeyK"
-	so = "your stackoverflow profile id"
 
 #site details
 [site]
