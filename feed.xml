@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Not So Null</title>
+    <description>Code +&#x3D; Play</description>
+    <link>https://blog.pawandubey.com/</link>
+    <atom:link href="https://blog.pawandubey.com/feed.xml" rel="self" type="application/rss+xml" />
+    <generator>Griffin</generator>
+    
+      <item>
+        <title>Year in Books: 2021</title>
+        <description><p>In 2021 I got back into serious reading after about a decade. Technically, it happened in 2018, but 2021 is the first time I've met (and exceeded) my reading target in these past three years.</description>
+        <pubDate>Fri, 31 Dec 2021 00:00:00 -0500</pubDate>
+        <link>https://blog.pawandubey.com/year-in-books-2021/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/year-in-books-2021/</guid>
+        
+        <category>personal</category>
+        
+        <category>books</category>
+        
+      </item>
+    
+      <item>
+        <title>Implementing a Naive Bayes Text Classifier</title>
+        <description><p>Ever since I discovered spam filters, I have been extremely interested in natural language and making sense out of it. One thing that I have come to understand about language is that it is <em>hard</em> to make sense of.</description>
+        <pubDate>Mon, 8 Aug 2016 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/implementing-a-naive-bayes-text-classifier/</guid>
+        
+        <category>code</category>
+        
+        <category>ruby</category>
+        
+        <category>classifier</category>
+        
+      </item>
+    
+      <item>
+        <title>Some Advice for CS Freshmen</title>
+        <description><blockquote><p>If you don't really care about my rationale for writing this whole thing, you can jump straight to the <a href="#list">list by clicking here.</a></p>
+</blockquote>
+<h2>Why should I care?</h2>
+<p>As I have grown older, I have realized that no amount of experience is a substitute for good advice from others.</description>
+        <pubDate>Sat, 6 Aug 2016 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/advice-for-cs-freshmen/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/advice-for-cs-freshmen/</guid>
+        
+        <category>code</category>
+        
+        <category>cs</category>
+        
+        <category>college</category>
+        
+      </item>
+    
+      <item>
+        <title>Java is still alive, and it&#x27;s kicking some serious ass</title>
+        <description><p>We are one fourth of our way through 2015 already, and I have not posted even once this year. So to restart on an interesting note, I’ll just put forward some of my overnight findings about the state of Java as a programming language and the community around it.</description>
+        <pubDate>Sun, 29 Mar 2015 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/java-is-still-alive-and-its-kicking-some-serious-ass/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/java-is-still-alive-and-its-kicking-some-serious-ass/</guid>
+        
+        <category>code</category>
+        
+      </item>
+    
+      <item>
+        <title>Dependency Injection: A Twenty Five Dollar Term</title>
+        <description><blockquote><p>“Dependency Injection” is a 25-dollar term for a 5-cent concept. – James Shore</p>
+</blockquote>
+<p>During the application period of GSoC, I gave a couple of interviews to my prospective mentors from MifosX.</description>
+        <pubDate>Fri, 27 Jun 2014 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/dependency-injection-a-twenty-five-dollar-term/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/dependency-injection-a-twenty-five-dollar-term/</guid>
+        
+        <category>code</category>
+        
+      </item>
+    
+      <item>
+        <title>A Friendly Introduction to Version Control and Git</title>
+        <description><p>Once upon a time there lived two programmers who were great friends. They loved the same programming language, wanted to make similar kinds of things and shared similar interests. Their ideas were convergent. But their code was separated by physical distance.</description>
+        <pubDate>Tue, 3 Jun 2014 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</guid>
+        
+        <category>code</category>
+        
+      </item>
+    
+      <item>
+        <title>You Do Not Need to Learn Coding</title>
+        <description><p>Recently there has been a lot of active pushing going on by the media/technology bigwigs for the “coding movement”. Biggest example of that being Code.Org which is backed by Facebook, Microsoft and Google, just to name a few. Not long back, there was a massive online campaign going on featuring celebrities sharing their experiences about learning code and how it had made their life better.</description>
+        <pubDate>Mon, 26 May 2014 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</guid>
+        
+        <category>code</category>
+        
+      </item>
+    
+      <item>
+        <title>Google Summer of Code : It Begins</title>
+        <description><p>It had been a tiring semester, in every sense of the word. The weather was hot and humid; made even more so by the uphill climbs one had to endure to reach either food or class.</description>
+        <pubDate>Sun, 18 May 2014 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/google-summer-of-code-it-begins/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/google-summer-of-code-it-begins/</guid>
+        
+        <category>code</category>
+        
+      </item>
+    
+  </channel>
+</rss>
