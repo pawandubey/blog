@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{config.siteName}}</title>
+    <description>{{config.siteTagline}}</description>
+    <link>{{config.siteBaseUrl}}/</link>
+    <atom:link href="{{config.siteBaseUrl}}/feed.xml" rel="self" type="application/rss+xml" />
+    <generator>Griffin</generator>
+    {{#latestPosts}}
+      <item>
+        <title>{{title}}</title>
+        <description>{{{excerpt}}}</description>
+        <pubDate>{{rssDate}}</pubDate>
+        <link>{{permalink}}</link>
+        <guid isPermaLink="true">{{permalink}}</guid>
+        {{#tags}}
+        <category>{{this}}</category>
+        {{/tags}}
+      </item>
+    {{/latestPosts}}
+  </channel>
+</rss>
