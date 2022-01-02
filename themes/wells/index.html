@@ -1,5 +1,11 @@
 {{>head this}}
 
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{config.siteBaseUrl}}" />
+<meta property="og:title" content="{{config.siteName}}" />
+
+</head>
+
 <body>
 
 {{>nav this}}
@@ -34,11 +40,11 @@
     <a href="{{permalink}}">
         <h2 class="post-title">            {{title}}
         </h2>
-        
+
         <h3 class="post-subtitle">
             {{{excerpt}}}
         </h3>
-        
+
     </a>
     <p class="post-meta"><i class="fa fa-calendar"></i> {{prettyDate}}{{#if tags}} in{{#tags}} <a {{#if config.renderTags}}href="{{config.siteBaseUrl}}/tags/{{this}}"{{else}}href="#"{{/if}} class="tag"> {{this}}</a></li>{{/tags}}{{/if}}
     </p>

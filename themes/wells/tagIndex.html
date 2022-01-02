@@ -1,5 +1,11 @@
 {{>head this}}
 
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{config.siteBaseUrl}}/tags/{{tag}}" />
+<meta property="og:title" content="Posts tagged with {{tag}}" />
+
+<head>
+
 <body>
 
 {{>nav this}}
@@ -16,7 +22,7 @@
                 <div class="site-heading">
                     <h1>{{config.siteName}}</h1>
                     <hr class="small">
-                    <span class="subheading">Posts under {{tag}}</span>
+                    <span class="subheading">Posts tagged with {{tag}}</span>
                 </div>
             </div>
         </div>
@@ -34,11 +40,11 @@
     <a href="{{permalink}}">
         <h2 class="post-title">            {{title}}
         </h2>
-        
+
         <h3 class="post-subtitle">
             {{{excerpt}}}
         </h3>
-        
+
     </a>
     <p class="post-meta"><span class="fa-calendar"></span> {{prettyDate}}</p>
 </div>
