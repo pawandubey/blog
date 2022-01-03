@@ -60,7 +60,7 @@ It's a novella about the meaning of existence and consciousness - tackled in the
 
 A murder is discovered in colonial era "Calcutta" and a newly-landed inspector is assigned to the case who attempts to untangle the threads with help of overeager local junior-ranking personnel.
 
-I picked this up as a deliberate attempt to read more Indian authors but was disappointed. An attempt is made to portray "Calcutta" filled with an air of intrigue and malice - with the protagonist barely familiar with the dark underbelly of the city and still mired-up in his own tragic past. It even has good reviews!
+An attempt is made to portray "Calcutta" filled with an air of intrigue and malice - with the protagonist barely familiar with the dark underbelly of the city and still mired-up in his own tragic past. It even has good reviews!
 
 I picked this up as a deliberate attempt to read more Indian authors but was disappointed. The story seemed to drag on, I felt no attachment to the protagonist, and the target audience seemed to not be Indians like me, but people unfamiliar with Kolkata (and colonial India). I did not bother finishing it.
 
