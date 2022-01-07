@@ -5,7 +5,7 @@ layout= "post"
 tags= ["code", "software"]
 #####
 
-I recently read Jason Swett's [post]((https://www.codewithjason.com/duplication-cheaper-wrong-abstraction/)) about not buying the adage that "duplication is cheaper than the wrong abstraction", in which he argues that the adage is nonsensical and may lead people into making poor design decisions.##more##
+I recently read Jason Swett's [post](https://www.codewithjason.com/duplication-cheaper-wrong-abstraction/) about not buying the adage that "duplication is cheaper than the wrong abstraction", in which he argues that the adage is nonsensical and may lead people into making poor design decisions.##more##
 
 I think the skepticism is valid. Software engineering is novel field, still trying to attain toddler-hood and most of our accepted practices are based on hearsay rather than empirical data. The field is highly susceptible to religiosity becoming the driver behind practice in this "wild-west" stage.
 
