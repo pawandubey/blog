@@ -8,6 +8,19 @@
     <generator>Griffin</generator>
     
       <item>
+        <title>binding.pry vs byebug vs debugger</title>
+        <description>&lt;blockquote&gt;&lt;p&gt;I wrote this in 2019 to share with my team at work as a few people had mentioned being confused about Ruby debugging tooling. I am sharing it here as the information is generally useful.</description>
+        <pubDate>Sun, 9 Jan 2022 00:00:00 -0500</pubDate>
+        <link>https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/</guid>
+        
+        <category>code</category>
+        
+        <category>ruby</category>
+        
+      </item>
+    
+      <item>
         <title>Year in Books: 2021</title>
         <description>&lt;p&gt;In 2021 I got back into serious reading after about a decade. Technically, it happened in 2018, but 2021 is the first time I&#x27;ve met (and exceeded) my reading target in these past three years.</description>
         <pubDate>Fri, 31 Dec 2021 00:00:00 -0500</pubDate>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <title>binding.pry vs byebug vs debugger | Not So Null</title>
+
+    <link rel="canonical" href="https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://blog.pawandubey.com/assets/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://blog.pawandubey.com/assets/css/clean-blog.css">
+
+    <!-- Custom Fonts -->
+    <link href='//fonts.googleapis.com/css?family=Raleway:800,400,300,600,700|Inconsolata' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--Syntax Highlighting-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/base16/monokai.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+
+    <!--FontAwesome-->
+    <script src="https://use.fontawesome.com/928161fc5d.js"></script>
+
+    <!--MathJax-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+
+     <!--GA-->
+     <script>
+     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+     ga('create', 'UA-82404247-1', 'auto');
+     ga('send', 'pageview');
+
+    </script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Global og tags -->
+    <meta property="og:image" content="https://blog.pawandubey.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Male technologist surrounded by curly brackets." />
+    <!-- Global og tags end -->
+
+
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/" />
+<meta property="og:title" content="binding.pry vs byebug vs debugger" />
+<meta property="og:description" content="&lt;blockquote&gt;&lt;p&gt;I wrote this in 2019 to share with my team at work as a few people had mentioned being confused about Ruby debugging tooling. I am sharing it here as the information is generally useful." />
+<meta property="article:author" content="Pawan Dubey">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="https://blog.pawandubey.com/">Not So Null</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="https://blog.pawandubey.com/">Home</a>
+                </li>
+                <li>
+                    <a href="https://pawandubey.com">About</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+<!-- Post Header -->
+
+
+<header class="intro-header">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>binding.pry vs byebug vs debugger</h1>
+                    <span class="meta"><i class="fa fa-calendar"></i> Jan. 9 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+				<blockquote><p>I wrote this in 2019 to share with my team at work as a few people had mentioned being confused about Ruby debugging tooling. I am sharing it here as the information is generally useful.</p>
+</blockquote>
+<p>There are a couple of different ways you might see a debugger invoked in Rubystan. The two major ones are <code>byebug</code> and <code>binding.pry</code> but a rare <code>debugger</code> is also seen from time to time. I will try to briefly explain the difference between the three.</p>
+<h2>Binding</h2>
+<p>To understand the debugging landscape in Rubystan, we must first understand this mysterious class called <a href="https://ruby-doc.org/core-2.5.1/Binding.html"><code>Binding</code></a>. This class is used to encapsulate the current &ldquo;execution context&rdquo; of the program at any given point. The execution context can roughly be understood as a single frame in the program's execution stack, so it gives you access to all constants, variables and methods accessible in the current scope.</p>
+<p>In Rubystan, <code>Kernel#binding</code> returns the <code>Binding</code> for the current execution context. As the <code>Kernel</code> module is included by the <code>Object</code> class, this method is available to be called at any point in a Ruby program.</p>
+<p><code>Binding</code> defines an <code>eval</code> instance method which can take an arbitrary Ruby program, and execute it in the context encapsulated by the <code>Binding</code> instance.</p>
+<pre><code class= "ruby">class Foo
+  def initialize
+    @a = 5
+  end
+
+  def get_binding
+    binding # binding is a private method
+  end
+end
+
+foo = Foo.new
+foo.get_binding.eval("@a + 1")
+#=&gt; 6
+</code></pre>
+<p>This class is the basis of all debuggers and introspectors we will talk about. If you're wondering: yes, it's possible to get the <code>binding</code> from an instance of <code>Binding</code> itself similarly.</p>
+<h2>binding.pry</h2>
+<p>Now that we have established what <code>binding</code> does in our code, it's easier to determine what <code>binding.pry</code> does. It just calls the method <code>pry</code> on an instance of <code>Binding</code>!</p>
+<p>The gem <code>pry</code> is a drop-in replacement for the <code>IRB</code> REPL that ships with Ruby by default. Pry provides some extra niceties around the REPL, including the ability to move in and out of the context of objects, save the command history to a file, inspect the source of a method by name etc. Pry (like IRB), makes heavy use of <code>Binding</code> to accomplish all this. In <a href="https://github.com/pry/pry/blob/4fcf81b97601945945f43311532c164a93b44d7c/lib/pry.rb#L26">this very early version of <code>pry</code></a>, you can see that the <code>.repl</code> method took a <code>Binding</code> instance as the only argument.</p>
+<p>In order to make our lives easier, <code>pry</code> also <a href="https://github.com/pry/pry/blob/c123bce66116c2bb050ad47d0006e9df215ff3be/lib/pry/core_extensions.rb#L43">adds a <code>#pry</code> method on <code>Object</code></a> to open a REPL session anywhere in our program (much like a debugger, but not quite). This REPL session gives us the same capabilities as a normal REPL but it evaluates the code in the context of the current <code>Binding</code>. When invoked from the terminal via the executable, it starts the REPL in the context of the <code>TOPLEVEL_BINDING</code>, which is a special <code>Binding</code> instance that points to the &ldquo;top level&rdquo; context. You can think of it as <code>main</code> in other languages. In fact, if you open an <code>irb</code> or <code>pry</code> session and execute <code>self</code>, you will see that it's actually called <code>main</code> as well.</p>
+<p>Coming back to <code>binding.pry</code>, when you put that line in your code somewhere, all it does is call <code>pry</code> on the current <code>binding</code> for that scope, which opens a REPL session within that execution context. As mentioned previously, this is close to a debugger, but not quite. All you can do with this is execute code (like inspecting the variables in the scope), and then exit. There's no stepping functionality available.</p>
+<pre><code class= "ruby"># after a binding.pry call
+[8] pry(main)&gt; step
+NameError: undefined local variable or method `step' for main:Object
+</code></pre>
+<p>However, that's not the complete truth. We may be able to make <code>binding.pry</code> behave like a debugger and use it to step through our code. But to get there, we have to look at <code>byebug</code> first.</p>
+<h2>Byebug</h2>
+<p>So we have a REPL, but we want to be able to step through code for it to be useful as a debugger. This is where <code>byebug</code> comes in. It's a gem which, like <code>pry</code>, uses <code>Binding</code> to provide powerful introspection functionality for our code. However, it also provides us with the ability to step through code with <code>step</code> (step into), <code>next</code> (step through), <code>continue</code> (continue execution to the end of the stack) etc.</p>
+<p>To access this, we just put <code>byebug</code> somewhere in our code and it takes care of grabbing the current <code>binding</code>, initializing a REPL and starting the debugging session for us. <code>byebug</code> is also a method that the gem <a href="https://github.com/deivid-rodriguez/byebug/blob/f18a730a168183681ddc8dbc54b15721a03b75ab/lib/byebug/attacher.rb#L34">adds on the <code>Kernel</code> module</a> so that it's accessible everywhere.</p>
+<p>In a default Ruby environment, <code>Byebug</code> integrates with <code>irb</code> as the REPL as <code>irb</code> is available by default with Ruby. But we just discussed the awesomeness of <code>pry</code>, so here comes&hellip;</p>
+<h2>pry-byebug</h2>
+<p>As <code>byebug</code> doesn't care what REPL you're using, it's advantageous to use the best one (read: <code>pry</code>). The <code>pry-byebug</code> gem takes care of this by <a href="https://github.com/deivid-rodriguez/pry-byebug/blob/117f11bfd9dc457dfc4769ac634ed63bf7bc7cbc/lib/byebug/processors/pry_processor.rb">extending <code>Byebug</code>'s command processor with <code>pry</code></a>.</p>
+<p>So if you have <code>pry</code>, <code>byebug</code> and <code>pry-byebug</code> installed (<code>pry-byebug</code> installs <code>pry</code> and <code>byebug</code> as dependencies, mind you), every time you debug using <code>byebug</code>, you will get a <code>pry</code> powered REPL for your debugging session.</p>
+<h2>binding.pry As a debugger</h2>
+<p>And this is how <code>binding.pry</code> gets the capability to step through code as a debugger. It's <code>byebug</code> behind the scenes, via <code>pry-byebug</code>.</p>
+<h2>So what's the difference between binding.pry and byebug, again?</h2>
+<p>As we saw, there's a lot of difference between them in isolation, however if you set them up together along with <code>pry-byebug</code>, the differences pretty much disappear. The only difference that remains is that with <code>byebug</code>, you get <code>n</code>, <code>s</code>, <code>c</code> etc as shortcut commands to execute <code>next</code>, <code>step</code> and <code>continue</code>, respectively. With <code>binding.pry</code>, <code>pry-byebug</code> disables these shortcuts as they might conflict with local variable names.</p>
+<p><mark>However, it's good to keep in mind that <code>binding.pry</code> is not <code>byebug</code>. It's not even a debugger by itself, and only becomes one by the grace of <code>pry-byebug</code>.</mark></p>
+<h2>Wait, what about the <code>debugger</code> command?</h2>
+<p>There used to be a gem called <code>debugger</code> in the Ruby ecosystem, which did for Rubies older than 2.0 what <code>byebug</code> does for us now. However, that gem has been long dead as the Ruby community has almost completely migrated to Ruby 2+.</p>
+<p>Nowadays, <a href="https://github.com/deivid-rodriguez/byebug/blob/f18a730a168183681ddc8dbc54b15721a03b75ab/lib/byebug/attacher.rb#L47"><code>debugger</code> is an alias for <code>byebug</code></a> that comes with the <code>byebug</code> gem.</p>
+<h2>Conclusion</h2>
+<p><code>binding.pry</code> != <code>binding.pry</code> (with <code>pry-byebug</code>, no shortcuts) == <code>byebug</code> == <code>debugger</code>.</p>
+
+				<hr>
+<span style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Share this post on </span>:<ul class="share-buttons">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/&t=binding.pry vs byebug vs debugger" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+  <li><a href="https://twitter.com/intent/tweet?source=https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/&text=binding.pry vs byebug vs debugger: https://blog.pawandubey.com/binding.pry-vs-byebug-vs-debugger/&via=thepawandubey" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-lg"></i></a></li>
+</ul>
+                <hr>
+<span class="tags" style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Posted under <a href="https://blog.pawandubey.com/tags/code" class="tag"> code</a></li> <a href="https://blog.pawandubey.com/tags/ruby" class="tag"> ruby</a></li></span>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://blog.pawandubey.com/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="https://twitter.com/thepawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    <li>
+                        <a href="https://github.com/pawandubey">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; <a href="https://blog.pawandubey.com">Pawan Dubey</a>. Made with <span class="fa fa-heart-o"></span> and <a href ="https://github.com/pawandubey/griffin">Griffin</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="https://blog.pawandubey.com/assets/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="https://blog.pawandubey.com/assets/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="https://blog.pawandubey.com/assets/js/clean-blog.min.js"></script>
+
+<!--Highlight.js-->
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</body>
+
+</html>
