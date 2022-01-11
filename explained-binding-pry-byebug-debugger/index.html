@@ -179,9 +179,11 @@ NameError: undefined local variable or method `step' for main:Object
 <p><mark>However, it's good to keep in mind that <code>binding.pry</code> is not <code>byebug</code>. It's not even a debugger by itself, and only becomes one by the grace of <code>pry-byebug</code>.</mark></p>
 <h2>Wait, what about the <code>debugger</code> command?</h2>
 <p>There used to be a gem called <code>debugger</code> in the Ruby ecosystem, which did for Rubies older than 2.0 what <code>byebug</code> does for us now. However, that gem has been long dead as the Ruby community has almost completely migrated to Ruby 2+.</p>
-<p>Nowadays, <a href="https://github.com/deivid-rodriguez/byebug/blob/f18a730a168183681ddc8dbc54b15721a03b75ab/lib/byebug/attacher.rb#L47"><code>debugger</code> is an alias for <code>byebug</code></a> that comes with the <code>byebug</code> gem.</p>
+<p>In Ruby 2, <a href="https://github.com/deivid-rodriguez/byebug/blob/f18a730a168183681ddc8dbc54b15721a03b75ab/lib/byebug/attacher.rb#L47"><code>debugger</code> was an alias for <code>byebug</code></a> that came with the <code>byebug</code> gem.</p>
+<p>Starting with Ruby 3.1, Ruby started to ship with a built-in debugger called&hellip; <a href="https://github.com/ruby/debug"><code>debug</code></a>! This new gem now includes a <code>debugger</code> method for invoking the debugger much like the old <code>debugger</code> gem (not the only alias as you can also invoke the debugger with <code>binding.break</code> or <code>binding.b</code>). Confusion abounds! (Thanks to @jrochkind for pointing me to this update)</p>
 <h2>Conclusion</h2>
-<p><code>binding.pry</code> != <code>binding.pry</code> (with <code>pry-byebug</code>, no shortcuts) == <code>byebug</code> == <code>debugger</code>.</p>
+<p><s><code>binding.pry</code> != <code>binding.pry</code> (with <code>pry-byebug</code>, no shortcuts) == <code>byebug</code> == <code>debugger</code></s></p>
+<p>It's all more complicated than it should be.</p>
 
 				<hr>
 <span style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Share this post on </span>:<ul class="share-buttons">
