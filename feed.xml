@@ -8,6 +8,17 @@
     <generator>Griffin</generator>
     
       <item>
+        <title>On Five Years in Canada</title>
+        <description>&lt;p&gt;Recently I completed my fifth year in Canada. I arrived in Ottawa in 2017, on a visa sponsored by a relatively-unknown Canadian software company and decided that I liked both the company and the country enough to stay-on full time.</description>
+        <pubDate>Fri, 27 May 2022 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/5-years-in-canada/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/5-years-in-canada/</guid>
+        
+        <category>personal</category>
+        
+      </item>
+    
+      <item>
         <title>Explained: binding.pry vs byebug vs debugger</title>
         <description>&lt;blockquote&gt;&lt;p&gt;I wrote this in 2019 to share with my team at work as a few people had mentioned being confused about Ruby debugging tooling. I am sharing it here as the information is generally useful.</description>
         <pubDate>Sun, 9 Jan 2022 00:00:00 -0500</pubDate>
