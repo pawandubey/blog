@@ -8,6 +8,19 @@
     <generator>Griffin</generator>
     
       <item>
+        <title>Don&#x27;t Sort Photos by Date First</title>
+        <description>&lt;p&gt;Every photographer&#x27;s organisation system that I&#x27;ve seen online has them sorting photos by date - and only date. This seemed obvious to me until recently, when I sat down to organise my own multi-hundred-GB photo collection before a backup. </description>
+        <pubDate>Fri, 1 Jul 2022 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/dont-sort-photos-by-date-first/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/dont-sort-photos-by-date-first/</guid>
+        
+        <category>photography</category>
+        
+        <category>productivity</category>
+        
+      </item>
+    
+      <item>
         <title>On Five Years in Canada</title>
         <description>&lt;p&gt;Recently I completed my fifth year in Canada. I arrived in Ottawa in 2017, on a visa sponsored by a relatively-unknown Canadian software company and decided that I liked both the company and the country enough to stay-on full time.</description>
         <pubDate>Fri, 27 May 2022 00:00:00 -0400</pubDate>
@@ -118,17 +131,6 @@
         <pubDate>Mon, 26 May 2014 00:00:00 -0400</pubDate>
         <link>https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</link>
         <guid isPermaLink="true">https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</guid>
-        
-        <category>code</category>
-        
-      </item>
-    
-      <item>
-        <title>Google Summer of Code : It Begins</title>
-        <description>&lt;p&gt;It had been a tiring semester, in every sense of the word. The weather was hot and humid; made even more so by the uphill climbs one had to endure to reach either food or class.</description>
-        <pubDate>Sun, 18 May 2014 00:00:00 -0400</pubDate>
-        <link>https://blog.pawandubey.com/google-summer-of-code-it-begins/</link>
-        <guid isPermaLink="true">https://blog.pawandubey.com/google-summer-of-code-it-begins/</guid>
         
         <category>code</category>
         
