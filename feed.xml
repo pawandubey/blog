@@ -8,6 +8,19 @@
     <generator>Griffin</generator>
     
       <item>
+        <title>Modern Database Desiderata</title>
+        <description>&lt;p&gt;I&#x27;ve been working much closer to database systems in the past year or so. This has led to learning a lot about the things modern applications desire from their database systems.</description>
+        <pubDate>Sat, 20 Aug 2022 00:00:00 -0400</pubDate>
+        <link>https://blog.pawandubey.com/modern-database-desiderata/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/modern-database-desiderata/</guid>
+        
+        <category>code</category>
+        
+        <category>db</category>
+        
+      </item>
+    
+      <item>
         <title>Don&#x27;t Sort Photos by Date First</title>
         <description>&lt;p&gt;Every photographer&#x27;s organisation system that I&#x27;ve seen online has them sorting photos by date - and only date. This seemed obvious to me until recently, when I sat down to organise my own multi-hundred-GB photo collection before a backup. </description>
         <pubDate>Fri, 1 Jul 2022 00:00:00 -0400</pubDate>
@@ -120,17 +133,6 @@
         <pubDate>Tue, 3 Jun 2014 00:00:00 -0400</pubDate>
         <link>https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</link>
         <guid isPermaLink="true">https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</guid>
-        
-        <category>code</category>
-        
-      </item>
-    
-      <item>
-        <title>You Do Not Need to Learn Coding</title>
-        <description>&lt;p&gt;Recently there has been a lot of active pushing going on by the media/technology bigwigs for the “coding movement”. Biggest example of that being Code.Org which is backed by Facebook, Microsoft and Google, just to name a few. Not long back, there was a massive online campaign going on featuring celebrities sharing their experiences about learning code and how it had made their life better.</description>
-        <pubDate>Mon, 26 May 2014 00:00:00 -0400</pubDate>
-        <link>https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</link>
-        <guid isPermaLink="true">https://blog.pawandubey.com/you-do-not-need-to-learn-coding/</guid>
         
         <category>code</category>
         

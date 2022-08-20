@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
 
-    <title>Home | Not So Null</title>
+    <title>Modern Database Desiderata | Not So Null</title>
 
-    <link rel="canonical" href="https://blog.pawandubey.com/page/2">
+    <link rel="canonical" href="https://blog.pawandubey.com/modern-database-desiderata/">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -67,9 +67,11 @@
     <!-- Global og tags end -->
 
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://blog.pawandubey.com" />
-<meta property="og:title" content="Not So Null" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.pawandubey.com/modern-database-desiderata/" />
+<meta property="og:title" content="Modern Database Desiderata" />
+<meta property="og:description" content="&lt;p&gt;I&#x27;ve been working much closer to database systems in the past year or so. This has led to learning a lot about the things modern applications desire from their database systems." />
+<meta property="article:author" content="Pawan Dubey">
 
 </head>
 
@@ -107,75 +109,62 @@
 </nav>
 
 
-<!-- Page Header -->
+<!-- Post Header -->
+
 
 <header class="intro-header">
+
 
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>Not So Null</h1>
-                    <hr class="small">
-                    <span class="subheading">Code +&#x3D; Play</span>
+                <div class="post-heading">
+                    <h1>Modern Database Desiderata</h1>
+                    <span class="meta"><i class="fa fa-calendar"></i> Aug. 20, 2022</span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-
-
-
-<div class="container">
+<!-- Post Content -->
+<article>
+    <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-<div class="post-preview">
-    <a href="https://blog.pawandubey.com/you-do-not-need-to-learn-coding/">
-        <h2 class="post-title">            You Do Not Need to Learn Coding
-        </h2>
+				<p>I've been working much closer to database systems in the past year or so. This has led to learning a lot about the things modern applications desire from their database systems. This insight was much less obvious to me when my circle of concern was limited to the application rather than the platform.</p>
+<p>I am still talking about relational databases here, as I think they remain the best choice for an overwhelming majority of use-cases, and these features have to augment, rather than supersede the ACID properties that these databases already provide.</p>
+<p>Of course, none of these ideas are novel in any way, and there are databases that have more than one of these features already. However, I have yet to see them all fully integrated in a single system, and I think if a single database can provide all of these things built-in (rather than through, say, a postgres extension), it will be well placed to become the default choice for non-trivial applications, as it would allow engineering time to be spent elsewhere.</p>
+<p>Okay, enough talk. Let's look at the features.</p>
+<h2>Online Schema Changes</h2>
+<p>Online schema changes are not news in the database world. Tools like <code>pt-osc</code> and <code>gh-ost</code> have existed for decades, and are battle-hardened. However, running them in production is still an extra step to take and another thing to maintain. InnoDB has had <a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-online-ddl-operations.html">online DDL</a> for a while, but it has <a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-online-ddl-limitations.html">some shortcomings</a> that prevent its full adoption. This is not specific to MySQL, and I think more database systems should invest into supporting online schema changes as a first-class citizen.</p>
+<h2>Bitemporality</h2>
+<p>Martin Fowler has a <a href="https://martinfowler.com/articles/bitemporal-history.html">more complete treatment of the topic</a>, but in short, it is sometimes useful to track system-level history rather than just business-level history. For example, consider that a shop imported their order history onto a new system. The history has to preserve the original modification dates for the order for compliance purposes, but various other systems in the new platform might want to care about rows that were changed in a given time window. This is where bitemporality can be a big boon.</p>
+<p>I am convinced that any $billion company has to build systems to work around this limitation, especially where you need to sync data outside of your main database. Some databases already have this functionality (e.g. <a href="https://mariadb.com/kb/en/system-versioned-tables/">MariaDB</a> and <a href="https://docs.microsoft.com/en-us/sql/relational-databases/tables/temporal-tables?view=sql-server-ver16">SQL Server</a>).</p>
+<h2>Schema History</h2>
+<p>Similar to the system-versioning tables, versioning schemas also unlock use-cases where data needs to be synced to external systems, by letting them keep their schemas in sync too. This is almost necessary for real-time use-cases, and different products out there have to maintain their own implementation for this feature (e.g. <a href="https://debezium.io/documentation/reference/stable/configuration/avro.html">Debezium</a>).</p>
+<h2>Auto-updating Materialized Views</h2>
+<p>If the number of startups solving a problem in any indication, then this is probably the biggest missing piece of the database systems puzzle. While some databases support materialized views, others don't have any concept of it entirely.</p>
+<p>Once you get to a certain size, you simply need the ability to have different views into your data without compromising on the freshness and correctness. Providing a way to build materialized views is the first step towards it. Keeping them up to date is the next. This is of course a hard problem to solve, but even a schedule-based mechanism is probably going to get users very far.</p>
+<hr />
+<p>That is my list (as of now). Maybe I'll think up more things, but I doubt I will need to, given the pace of change in database technologies. So see you in, uh, 20 years?</p>
 
-        <h3 class="post-subtitle">
-            <p>Recently there has been a lot of active pushing going on by the media/technology bigwigs for the “coding movement”. Biggest example of that being Code.Org which is backed by Facebook, Microsoft and Google, just to name a few. Not long back, there was a massive online campaign going on featuring celebrities sharing their experiences about learning code and how it had made their life better.
-        </h3>
-
-    </a>
-    <p class="post-meta"><i class="fa fa-calendar"></i> May 26, 2014 in <a href="#" class="tag"> code</a></li>
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="https://blog.pawandubey.com/google-summer-of-code-it-begins/">
-        <h2 class="post-title">            Google Summer of Code : It Begins
-        </h2>
-
-        <h3 class="post-subtitle">
-            <p>It had been a tiring semester, in every sense of the word. The weather was hot and humid; made even more so by the uphill climbs one had to endure to reach either food or class.
-        </h3>
-
-    </a>
-    <p class="post-meta"><i class="fa fa-calendar"></i> May 18, 2014 in <a href="#" class="tag"> code</a></li>
-    </p>
-</div>
-<hr>
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="https://blog.pawandubey.com">&larr; Newer Posts</a>
-    </li>
-    
-    
+				<hr>
+<span style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Share this post on </span>:<ul class="share-buttons">
+  <li><a href="https://www.facebook.com/sharer/sharer.php?u=https://blog.pawandubey.com/modern-database-desiderata/&t=Modern Database Desiderata" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-lg"></i></a></li>
+  <li><a href="https://twitter.com/intent/tweet?source=https://blog.pawandubey.com/modern-database-desiderata/&text=Modern Database Desiderata: https://blog.pawandubey.com/modern-database-desiderata/&via=thepawandubey" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-lg"></i></a></li>
 </ul>
+                <hr>
+<span class="tags" style="font-family: 'Raleway','Open Sans', sans-serif; font-size: small;">Posted under <a href="https://blog.pawandubey.com/tags/code" class="tag"> code</a></li> <a href="https://blog.pawandubey.com/tags/db" class="tag"> db</a></li></span>
 
-</div>
-</div>
-</div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<hr>
+
 <!-- Footer -->
 <footer>
     <div class="container">
@@ -230,5 +219,7 @@
 <!--Highlight.js-->
 <script>hljs.initHighlightingOnLoad();</script>
 
+
 </body>
+
 </html>
