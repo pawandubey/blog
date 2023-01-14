@@ -8,6 +8,19 @@
     <generator>Griffin</generator>
     
       <item>
+        <title>2022 - A Retrospective</title>
+        <description>&lt;p&gt;A year-in-review post, full two weeks late. Sue me, I guess.</description>
+        <pubDate>Sun, 15 Jan 2023 00:00:00 -0500</pubDate>
+        <link>https://blog.pawandubey.com/year-in-review-2022/</link>
+        <guid isPermaLink="true">https://blog.pawandubey.com/year-in-review-2022/</guid>
+        
+        <category>personal</category>
+        
+        <category>books</category>
+        
+      </item>
+    
+      <item>
         <title>Modern Database Desiderata</title>
         <description>&lt;p&gt;I&#x27;ve been working much closer to database systems in the past year or so. This has led to learning a lot about the things modern applications desire from their database systems.</description>
         <pubDate>Sat, 20 Aug 2022 00:00:00 -0400</pubDate>
@@ -122,17 +135,6 @@
         <pubDate>Fri, 27 Jun 2014 00:00:00 -0400</pubDate>
         <link>https://blog.pawandubey.com/dependency-injection-a-twenty-five-dollar-term/</link>
         <guid isPermaLink="true">https://blog.pawandubey.com/dependency-injection-a-twenty-five-dollar-term/</guid>
-        
-        <category>code</category>
-        
-      </item>
-    
-      <item>
-        <title>A Friendly Introduction to Version Control and Git</title>
-        <description>&lt;p&gt;Once upon a time there lived two programmers who were great friends. They loved the same programming language, wanted to make similar kinds of things and shared similar interests. Their ideas were convergent. But their code was separated by physical distance.</description>
-        <pubDate>Tue, 3 Jun 2014 00:00:00 -0400</pubDate>
-        <link>https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</link>
-        <guid isPermaLink="true">https://blog.pawandubey.com/a-friendly-introduction-to-version-control-and-git/</guid>
         
         <category>code</category>
         
