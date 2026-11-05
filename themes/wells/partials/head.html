@@ -6,11 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="{{ config.siteTagLine }}">
+    <meta name="description" content="{{config.site.tagline}}">
 
-    <title>{{#if post}}{{post.title}}{{else}}Home{{/if}} | {{config.siteName}}</title>
+    <title>{{#if post}}{{post.title}}{{else}}Home{{/if}} | {{config.site.name}}</title>
 
-    <link rel="canonical" href="{{#if index}}{{index.currentPage}}{{else}}{{post.permalink}}{{/if}}">
+    <link rel="canonical" href="{{#if index}}{{#each index.pages}}{{#if current}}{{@root.config.site.baseurl}}{{url}}{{/if}}{{/each}}{{else}}{{post.permalink}}{{/if}}">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -19,10 +19,10 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="{{config.siteBaseUrl}}/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{config.siteBaseUrl}}/assets/css/clean-blog.css">
+    <link rel="stylesheet" href="/assets/css/clean-blog.css">
 
     <!-- Custom Fonts -->
     <link href='//fonts.googleapis.com/css?family=Raleway:800,400,300,600,700|Inconsolata' rel='stylesheet' type='text/css'>
@@ -61,7 +61,7 @@
     <![endif]-->
 
     <!-- Global og tags -->
-    <meta property="og:image" content="{{config.siteBaseUrl}}/og-image.png" />
+    <meta property="og:image" content="{{config.site.baseurl}}/og-image.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="Male technologist surrounded by curly brackets." />
     <!-- Global og tags end -->

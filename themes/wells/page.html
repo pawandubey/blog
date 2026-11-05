@@ -1,4 +1,4 @@
-{{>head this}}
+{{> head}}
 
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{post.permalink}}" />
@@ -10,14 +10,14 @@
 
 <body>
 
-{{>nav this}}
+{{> nav}}
 
 <!-- Page Header -->
-{{#if post.featuredImage}}
-<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{post.featuredImage}}') center center no-repeat">
+{{#if post.image}}
+<header class="intro-header" style="background: url('{{post.image}}') center center no-repeat">
 {{else}}
-{{#if config.headerImage}}
-<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{config.headerImage}}') center center no-repeat">
+{{#if config.headerimage}}
+<header class="intro-header" style="background: url('/{{config.headerimage}}') center center no-repeat">
 {{else}}
 <header class="intro-header">
 {{/if}}
@@ -44,7 +44,7 @@
 
 <hr>
 
-{{>footer this}}
+{{> footer}}
 
 </body>
 

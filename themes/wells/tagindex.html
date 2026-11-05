@@ -1,18 +1,18 @@
-{{>head this}}
+{{> head}}
 
 <meta property="og:type" content="website" />
-<meta property="og:url" content="{{config.siteBaseUrl}}/tags/{{tag}}" />
-<meta property="og:title" content="Posts tagged with {{tag}}" />
+<meta property="og:url" content="{{config.site.baseurl}}{{tag.url}}" />
+<meta property="og:title" content="Posts tagged with {{tag.name}}" />
 
 <head>
 
 <body>
 
-{{>nav this}}
+{{> nav}}
 
 <!-- Page Header -->
-{{#if config.headerImage}}
-<header class="intro-header" style="background: url('{{config.siteBaseUrl}}/{{config.headerImage}}') center center no-repeat">
+{{#if config.headerimage}}
+<header class="intro-header" style="background: url('/{{config.headerimage}}') center center no-repeat">
 {{else}}
 <header class="intro-header">
 {{/if}}
@@ -20,9 +20,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>{{config.siteName}}</h1>
+                    <h1>{{config.site.name}}</h1>
                     <hr class="small">
-                    <span class="subheading">Posts tagged with {{tag}}</span>
+                    <span class="subheading">Posts tagged with {{tag.name}}</span>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
 <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-{{#posts}}
+{{#each index.posts}}
 <div class="post-preview">
-    <a href="{{permalink}}">
+    <a href="{{url}}">
         <h2 class="post-title">            {{title}}
         </h2>
 
@@ -46,28 +46,28 @@
         </h3>
 
     </a>
-    <p class="post-meta"><span class="fa-calendar"></span> {{prettyDate}}</p>
+    <p class="post-meta"><span class="fa-calendar"></span> {{date}}</p>
 </div>
 <hr>
-{{/posts}}
+{{/each}}
 
 <!-- Pager -->
 
 <ul class="pager">
-    {{#if index.previousPage}}
+    {{#if index.previous_page}}
     <li class="previous">
-        <a href="{{index.previousPage}}">&larr; Newer Posts</a>
+        <a href="{{index.previous_page}}">&larr; Newer Posts</a>
     </li>
     {{/if}}
-    {{#if index.nextPage}}
+    {{#if index.next_page}}
     <li class="next">
-        <a href="{{index.nextPage}}">Older Posts &rarr;</a>
+        <a href="{{index.next_page}}">Older Posts &rarr;</a>
     </li>
     {{/if}}
 </ul>
 </div>
 </div>
 </div>
-{{>footer this}}
+{{> footer}}
 </body>
 </html>
