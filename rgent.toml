@@ -8,7 +8,7 @@ theme = "wells"
 headerimage = ""
 postsperindex = 10
 
-rendertags = false
+rendertags = true
 
 [preview]
 port = 9090
